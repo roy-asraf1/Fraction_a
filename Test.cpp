@@ -67,6 +67,9 @@ Fraction fraction1(1, 2);
 Fraction fraction2(0);
 CHECK_THROWS_AS(fraction1 / fraction2, invalid_argument);
 
+//more of 3 digits
+CHECK_THROWS(Fraction(0.1111)); 
+CHECK_THROWS(Fraction(0.11111));
 
 cout << "check for input stream" << endl;
 Fraction fraction3;
@@ -77,6 +80,9 @@ cout << "check foroutput  stream" << endl;
 Fraction fraction4(1, 0);
 std::stringstream ss2;
 CHECK_THROWS_AS(ss2 << fraction4, invalid_argument);
+//invalid /0
+CHECK_THROWS(Fraction(1,0)); 
+
 }
 
 TEST_CASE("VALID ANSWERS,OPERATORS AND ALSO THERE IS NO INFINITE LOOP:"){
@@ -105,6 +111,10 @@ TEST_CASE("VALID ANSWERS,OPERATORS AND ALSO THERE IS NO INFINITE LOOP:"){
     CHECK(fraction0 >= fraction2);
     CHECK(fraction1 <= fraction1);
     
+    // fraction become simplified
+    Fraction valid(2,4);  
+    CHECK(valid.getNumerator() == 1);
+    CHECK(valid.getDenominator() == 2);
     
     cout << "check for some loop" << endl;
     end = clock();
